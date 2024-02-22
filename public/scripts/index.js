@@ -4,10 +4,10 @@ window.addEventListener("load", () => {
 
     let browserInfo = ""
     let dateTime = ""
-    var type = document.URL.split('/').reverse()[0]
+    // var type = document.URL.split('/').reverse()[0]
     var id = document.URL.split('/').reverse()[1]
     sessionStorage.setItem("id", id)
-    sessionStorage.setItem("type", type)
+    // sessionStorage.setItem("type", type)
 
     // (B1) PARSE USER AGENT
     browserInfo = navigator.userAgent;
@@ -26,8 +26,8 @@ async function sendGeneralData(browserInfo, dateTime) {
 
     let url = '/updateDatabase';
     let data = {
-        'DateTime': dateTime,
-        'BrowserInfo': browserInfo,
+        'Date-time': dateTime,
+        'Browser_Info': browserInfo,
     };
 
     let res = await fetch(url, {
