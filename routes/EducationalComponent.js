@@ -277,31 +277,31 @@ function updateDatabase(req, res, next) {
     // console.log(dbEntry)
     userInfo = req.userInfo;
     // BEGIN DATABSAE STUFF:SENDING VERSION (R24 OR U01) AND ID TO DATABASE
-    sql.connect(config, function (err) {
+    // sql.connect(config, function (err) {
 
-        if (err) console.log(err);
+    //     if (err) console.log(err);
 
-        // create Request object
-        var request = new sql.Request();
+    //     // create Request object
+    //     var request = new sql.Request();
 
-        // let queryString = 'UPDATE R24 SET Educational_' + dbEntry + `='clicked' WHERE ID=` + `'` + userInfo.ID + `'`; // UNCOMMENT:`'AND TYPE ='` + type + `'`;
-        let queryString = `
-        UPDATE R24
-        SET Educational_` + dbEntry + `= 'clicked'
-        WHERE ID = '` + userInfo.ID + `' 
-        AND VisitNum = '` + userInfo.visitNum + `'`;
+    //     // let queryString = 'UPDATE R24 SET Educational_' + dbEntry + `='clicked' WHERE ID=` + `'` + userInfo.ID + `'`; // UNCOMMENT:`'AND TYPE ='` + type + `'`;
+    //     let queryString = `
+    //     UPDATE R24
+    //     SET Educational_` + dbEntry + `= 'clicked'
+    //     WHERE ID = '` + userInfo.ID + `' 
+    //     AND VisitNum = '` + userInfo.visitNum + `'`;
 
-        // console.log(queryString)
-        request.query(queryString, function (err, recordset) {
-            if (err) console.log(err)
-            // send records as a response
-            /// console.log("UPDATED! IN R24U01 TABLE:")
-            // console.log(recordset);
-        }); 
-        // res.send("Updated.");
+    //     // console.log(queryString)
+    //     request.query(queryString, function (err, recordset) {
+    //         if (err) console.log(err)
+    //         // send records as a response
+    //         /// console.log("UPDATED! IN R24U01 TABLE:")
+    //         // console.log(recordset);
+    //     }); 
+    //     // res.send("Updated.");
     
-    });
-    // END DATABASE STUFF
+    // });
+    // // END DATABASE STUFF
 
     next();
 }
