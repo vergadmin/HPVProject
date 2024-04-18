@@ -142,7 +142,7 @@ var receivedVaccineQuestionInfo = {
             linkToURL: "hpvInformation"
         },
         {
-            buttonName: "Not Sure",
+            buttonName: "Not sure",
             linkToURL: "hpvInformation"
         }
     ]
@@ -178,11 +178,11 @@ var whenVaccineReceivedQuestionInfo = {
             linkToURL: "completedVaccineSeriesQuestion"
         },
         {
-            buttonName: "After I was treated for Cancer",
+            buttonName: "After I was treated for cancer",
             linkToURL: "completedVaccineSeriesQuestion"
         },
         {
-            buttonName: "Before and After I was treated for cancer",
+            buttonName: "Before and after I was treated for cancer",
             linkToURL: "completedVaccineSeriesQuestion"
         },
         {
@@ -232,7 +232,7 @@ var doYouPlanToGetVaccineQuestionInfo = {
             linkToURL: "reasonsForNotConsideringQuestion"
         },
         {
-            buttonName: "Not Sure",
+            buttonName: "Not sure",
             linkToURL: "reasonsForNotConsideringQuestion"
         }
     ]
