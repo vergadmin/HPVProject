@@ -1,33 +1,26 @@
-window.addEventListener("load", () => {
+let HomepageVisitTimeStamp = Date.now();
+let PageName = "Homepage";
+
+
+
+ window.addEventListener("load", async() => {
+    await clearSessionStorageAfterXHours();
+    // console.log("SAVING SESSION INFO LOCALLY")
+    // console.log(document.URL)
+
     let browserInfo = ""
     let dateTime = ""
     // var type = document.URL.split('/').reverse()[0]
-    var id = document.URL.split('/').reverse()[0]
-    console.log(id)
-    sessionStorage.setItem("id", id)
-    // sessionStorage.setItem("type", type)
-
-    // (B1) PARSE USER AGENT
-    browserInfo = detectBrowser();
-    osInfo = getOS()
-    let platformInfo = checkDeviceType();
-
-    // console.log("TIME")
-    dateTime = new Date().toLocaleString() + " " + Intl.DateTimeFormat().resolvedOptions().timeZone;
-    // console.log(dateTime)
-    sendGeneralData(browserInfo, osInfo, platformInfo, dateTime)
-
-    
+    // var id = document.URL.split('/').reverse()[1]
 });
 
-async function sendGeneralData(browserInfo, osInfo, platformInfo, dateTime) {
-    console.log("IN SEND TO SERVER GENERAL DATA")
+async function sendGeneralData(browserInfo, dateTime) {
+    // console.log("IN SEND TO SERVER GENERAL DATA")
+
     let url = '/updateDatabase';
     let data = {
-        'Date_time': dateTime,
-        'Browser_Info': browserInfo,
-        'OS_Info': osInfo,
-        'Platform': platformInfo
+        'DateTime': dateTime,
+        'BrowserInfo': browserInfo,
     };
 
     let res = await fetch(url, {
@@ -39,113 +32,201 @@ async function sendGeneralData(browserInfo, osInfo, platformInfo, dateTime) {
     });
     if (res.ok) {
         let ret = await res.json();
-        console.log("done sending to server")
         return JSON.parse(ret.data);
+
     } else {
         return `HTTP error: ${res.status}`;
     }
 }
 
-// helper function to detect browser
-function detectBrowser() {
-    var nAgt = navigator.userAgent;
-    var browserName  = navigator.appName;
-    var fullVersion  = ''+parseFloat(navigator.appVersion); 
-    var majorVersion = parseInt(navigator.appVersion,10);
-    var nameOffset,verOffset,ix;
+// function SessionStorageValidity(){
+//     var hours = 0.001; // to clear the localStorage after 1 hour
+//     // (if someone want to clear after 8hrs simply change hours=8)
+//     var now = new Date().getTime();
+//     var setupTime = sessionStorage.getItem('setupTime');
+//     if (setupTime == null) {
+//     sessionStorage.setItem('setupTime', now)
+//     } else {
+//     if(now-setupTime > hours*60*60*1000) {
+//     sessionStorage.clear()
+//     sessionStorage.setItem('setupTime', now);
+//     window.location.href=`/${id}/`
+//     }
+//     }
+//     console.log("Session Reset!")
+// }
 
-    // In Opera, the true version is after "OPR" or after "Version"
-    if ((verOffset=nAgt.indexOf("OPR"))!=-1) {
-        browserName = "Opera";
-        fullVersion = nAgt.substring(verOffset+4);
-        if ((verOffset=nAgt.indexOf("Version"))!=-1) 
-        fullVersion = nAgt.substring(verOffset+8);
+async function ContinueOrResetSession(character){
+    console.log(character !== sessionStorage.getItem("type"))
+    // var type = document.URL.split('/').reverse()[0]
+    var id = document.URL.split('/').reverse()[1]
+    if(character !== sessionStorage.getItem("type")){    
+        if(sessionStorage.getItem('setupTime') !== null){
+            await fetch('/submitData', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json' // Specify content type as JSON
+                },
+                body: JSON.stringify(sessionStorage)
+            });
+        }
+        sessionStorage.clear()
+        sessionStorage.setItem("id", id)
+        sessionStorage.setItem("type", character)
+    
+        additionalInformationTopics = {
+            "Benefits of kidney transplant": false,
+            "Who can get a kidney transplant": false,
+            "The transplant work-up": false,
+            "Overview - The waiting list": false,
+            "Living donor transplant": false,
+            "Getting a transplant sooner": false,
+            "How long do kidney transplants last": false,
+            "The risks of kidney transplant": false,
+            "Choosing a transplant center": false,
+            "Who can be a living kidney donor": false,
+            "Talking to your doctor": false
+        };
+        sessionStorage.setItem('additionalInformationTopics', JSON.stringify(additionalInformationTopics));
+
+        // (B1) PARSE USER AGENT
+        browserInfo = navigator.userAgent;
+        // console.log(browserInfo)
+
+        // console.log("TIME")
+        dateTime = new Date().toLocaleString() + " " + Intl.DateTimeFormat().resolvedOptions().timeZone;
+        sessionStorage.setItem('startTime', Date.now());
+
+        sessionStorage.setItem('TotalTimeSpentOnIntervention', 0);
+        sessionStorage.setItem('InterventionStartTime', new Date(HomepageVisitTimeStamp).toISOString().slice(0, 19).replace('T', ' '))
+        sessionStorage.setItem('NumberOfModulesInteracted', 0);
+        setDeviceDetails();
+        setSessionStorageSetupTime();
     }
-    // In MS Edge, the true version is after "Edg" in userAgent
-    else if ((verOffset=nAgt.indexOf("Edg"))!=-1) {
-        browserName = "Microsoft Edge";
-        fullVersion = nAgt.substring(verOffset+4);
-    }
-    // In MSIE, the true version is after "MSIE" in userAgent
-    else if ((verOffset=nAgt.indexOf("MSIE"))!=-1) {
-        browserName = "Microsoft Internet Explorer";
-        fullVersion = nAgt.substring(verOffset+5);
-    }
-    // In Chrome, the true version is after "Chrome" 
-    else if ((verOffset=nAgt.indexOf("Chrome"))!=-1) {
-        browserName = "Chrome";
-        fullVersion = nAgt.substring(verOffset+7);
-    }
-    // In Safari, the true version is after "Safari" or after "Version" 
-    else if ((verOffset=nAgt.indexOf("Safari"))!=-1) {
-        browserName = "Safari";
-        fullVersion = nAgt.substring(verOffset+7);
-        if ((verOffset=nAgt.indexOf("Version"))!=-1) 
-        fullVersion = nAgt.substring(verOffset+8);
-    }
-    // In Firefox, the true version is after "Firefox" 
-    else if ((verOffset=nAgt.indexOf("Firefox"))!=-1) {
-        browserName = "Firefox";
-        fullVersion = nAgt.substring(verOffset+8);
-    }
-    // In most other browsers, "name/version" is at the end of userAgent 
-    else if ( (nameOffset=nAgt.lastIndexOf(' ')+1) < 
-            (verOffset=nAgt.lastIndexOf('/')) ) 
-    {
-        browserName = nAgt.substring(nameOffset,verOffset);
-        fullVersion = nAgt.substring(verOffset+1);
-        if (browserName.toLowerCase()==browserName.toUpperCase()) {
-        browserName = navigator.appName;
+    CreateVideoDataArray();
+    logActiveTriggerOrNot('Introduction', moduleName = null, activeTrigger = true)
+    window.location.href=`/${id}/EducationalComponent/${character}/Introduction`
+}
+
+function CreateVideoDataArray(){
+
+    var type = sessionStorage.getItem("type")
+    "Homepage", "HPVVaccineReceived", "HPVVaccineInformation", "HPVVaccineCancerPrevention", "Recommendation", "PlanToGetHPVVaccine", "NextVisit", "Transcript"
+    //Remove this line later, just for timebeing when chnages to VideoArray Format are still being made.
+    if (sessionStorage.getItem("VideoArr") === null) {
+    var VideoArray = {
+        'Homepage': {
+        "VideoURL": null,
+        "PageVisited": true,
+        "PageFirstVisitedTimeStamp": new Date(HomepageVisitTimeStamp).toISOString().slice(0, 19).replace('T', ' '),
+        "PageLastVisitedTimeStamp": new Date(HomepageVisitTimeStamp).toISOString().slice(0, 19).replace('T', ' '),
+        "NumberOfTimesPageVisited": 1,
+        "TimeSpentOnPage":  Math.floor( (Date.now() - HomepageVisitTimeStamp)/1000),
+        "ActiveOrPassiveRedirectionToPage": "active",
+        },
+        'Introduction': {
+        "VideoURL": `https://hpv-project.s3.amazonaws.com/${type}/Introduction.mp4`,
+        "PageVisited": false,
+        "PageFirstVisitedTimeStamp": null,
+        "PageLastVisitedTimeStamp": null,
+        "NumberOfTimesPageVisited": 0,
+        "TimeSpentOnPage": null,
+        "ActiveOrPassiveRedirectionToPage": null,
+        },
+        'HPVVaccineReceived': {
+            "VideoURL": null,
+            "PageVisited": false,
+            "PageFirstVisitedTimeStamp": null,
+            "PageLastVisitedTimeStamp": null,
+            "NumberOfTimesPageVisited": 0,
+            "TimeSpentOnPage": null,
+            "ActiveOrPassiveRedirectionToPage": null,
+        },
+        'HPVVaccineInformation': {
+            "VideoURL": `https://hpv-project.s3.amazonaws.com/${type}/Introduction.mp4`,
+            "PageVisited": false,
+            "PageFirstVisitedTimeStamp": null,
+            "PageLastVisitedTimeStamp": null,
+            "NumberOfTimesPageVisited": 0,
+            "TimeSpentOnPage": null,
+            "ActiveOrPassiveRedirectionToPage": null,
+        },
+        'Recommendation': {
+            "VideoURL": `https://hpv-project.s3.amazonaws.com/${type}/Introduction.mp4`,
+            "PageVisited": false,
+            "PageFirstVisitedTimeStamp": null,
+            "PageLastVisitedTimeStamp": null,
+            "NumberOfTimesPageVisited": 0,
+            "TimeSpentOnPage": null,
+            "ActiveOrPassiveRedirectionToPage": null,
+        },
+        'PlanToGetHPVVaccine': {
+            "VideoURL": `https://hpv-project.s3.amazonaws.com/${type}/Introduction.mp4`,
+            "PageVisited": false,
+            "PageFirstVisitedTimeStamp": null,
+            "PageLastVisitedTimeStamp": null,
+            "NumberOfTimesPageVisited": 0,
+            "TimeSpentOnPage": null,
+            "ActiveOrPassiveRedirectionToPage": null,
+        },
+        'NextVisit': {
+            "VideoURL": `https://hpv-project.s3.amazonaws.com/${type}/Introduction.mp4`,
+            "PageVisited": false,
+            "PageFirstVisitedTimeStamp": null,
+            "PageLastVisitedTimeStamp": null,
+            "NumberOfTimesPageVisited": 0,
+            "TimeSpentOnPage": null,
+            "ActiveOrPassiveRedirectionToPage": null,
+        },
+        "summary": {
+        "VideoURL": `https://hpv-project.s3.amazonaws.com/${type}/closingMessage.mp4`,
+        "PageVisited": false,
+        "PageFirstVisitedTimeStamp": null,
+        "PageLastVisitedTimeStamp": null,
+        "NumberOfTimesPageVisited": 0,
+        "TimeSpentOnPage": null,
+        "ActiveOrPassiveRedirectionToPage": null,
         }
     }
-    // trim the fullVersion string at semicolon/space if present
-    if ((ix=fullVersion.indexOf(";"))!=-1)
-        fullVersion=fullVersion.substring(0,ix);
-    if ((ix=fullVersion.indexOf(" "))!=-1)
-        fullVersion=fullVersion.substring(0,ix);
-
-    majorVersion = parseInt(''+fullVersion,10);
-    if (isNaN(majorVersion)) {
-    fullVersion  = ''+parseFloat(navigator.appVersion); 
-    majorVersion = parseInt(navigator.appVersion,10);
+    sessionStorage.setItem("VideoArr", JSON.stringify(VideoArray))
     }
-
-    return browserName + " " + majorVersion
+    else {
+    VideoArray = JSON.parse(sessionStorage.getItem("VideoArr"))
+    }
 }
 
-// helper function to detect platform/os
-function getOS() {
-    const userAgent = window.navigator.userAgent,
-        platform = window.navigator?.userAgentData?.platform || window.navigator.platform,
-        macosPlatforms = ['macOS', 'Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'],
-        windowsPlatforms = ['Win32', 'Win64', 'Windows', 'WinCE'],
-        iosPlatforms = ['iPhone', 'iPad', 'iPod'];
-    let os = null;
-  
-    if (macosPlatforms.indexOf(platform) !== -1) {
-      os = 'Mac OS';
-    } else if (iosPlatforms.indexOf(platform) !== -1) {
-      os = 'iOS';
-    } else if (windowsPlatforms.indexOf(platform) !== -1) {
-      os = 'Windows';
-    } else if (/Android/.test(userAgent)) {
-      os = 'Android';
-    } else if (/Linux/.test(platform)) {
-      os = 'Linux';
-    }
-  
-    return os;
+async function clearSessionStorageAfterXHours(hours = 5){
+    var now = new Date().getTime();
+    var setupTime = sessionStorage.getItem('setupTime');
+    if (setupTime === null || (now-setupTime > hours*60*60*1000)) {
+        if(setupTime !== null){
+            const response = await fetch('/submitData', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json' // Specify content type as JSON
+                },
+                body: JSON.stringify(sessionStorage)
+            });
+            return response
+        }
+        sessionStorage.clear();
+    } 
+    return -1
 }
 
-// helper function to detect if device is a mobile, tablet, or desktop based on screen width
-function checkDeviceType() {
-    const screenWidth = window.innerWidth;
-    
-    if (screenWidth < 768) {
-        return "Mobile";
-    } else if (screenWidth < 1024) {
-        return "Tablet";
-    } else {
-        return "Desktop";
-    }
+function setSessionStorageSetupTime(){
+    var now = new Date().getTime();
+    sessionStorage.setItem('setupTime', now);
+}
+
+function LogTimeSpendOnPage(){
+    console.log("hello")
+}
+
+function setDeviceDetails(){
+    const userAgent = navigator.userAgent;
+    const { platform, operatingSystem, browser } = parseUserAgent(userAgent);
+    sessionStorage.setItem("platform", platform);
+    sessionStorage.setItem("operatingSystem", operatingSystem);
+    sessionStorage.setItem("browser", browser);
 }

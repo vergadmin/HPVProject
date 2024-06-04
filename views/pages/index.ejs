@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:,">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;900&display=swap" rel="stylesheet">
@@ -10,46 +12,50 @@
     <link href="/css/index.css" rel="stylesheet" type="text/css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bowser/2.11.0/bundled.js"></script>
     <script src="/scripts/index.js"></script>
-    <script src="/scripts/registerClicks.js"></script>
-    <link rel="icon" href="data:,">
     <title>HPV</title>
 </head>
+
 <body>
     <header>
         <%- include('../partials/header'); %>
     </header>
     <div class="container">
-        <br/>
-        <!-- <p class="title">Welcome to Your Meeting about the HPV Vaccine!</p> -->
-       
-        <p class="title">Who would you like to meet with? <br/>(select a virtual character)</p>
-        <br/>
-        <br/>
+        <br>
+        <p class="title">Who would you like to meet with?
+            (select a virtual character)</p>
+        <br>
+        <br>
         <div class="selection-area">
             <div class="choose-alex">
-                <a href="/<%=id%>/EducationalComponent/Character_a/Introduction" onclick="sendToDatabase('Character_Selected','Character_a')">
-                    <img class="alex-snippet" src="https://hpv-project.s3.amazonaws.com/Assets/a_chauncy_image.png" />
-                    <!-- <img class="alex-snippet" src="/images/a_henry_image.png" /> -->
+                <a onclick="ContinueOrResetSession('Character_a')">
+                    <img class="alex-snippet"
+                        src="https://hpv-project.s3.amazonaws.com/Assets/a_chauncy_image.png" />
                 </a>
-                <a href="/<%=id%>/EducationalComponent/Character_b/Introduction" onclick="sendToDatabase('Character_Selected','Character_b')">
-                    <img class="alex-snippet" src="https://hpv-project.s3.amazonaws.com/Assets/b_jack_image.png" />
+                <a onclick="ContinueOrResetSession('Character_b')">
+                    <img class="alex-snippet"
+                        src="https://hpv-project.s3.amazonaws.com/Assets/b_jack_image.png" />
                 </a>
-                
+
             </div>
             <div class="choose-alex">
-                <a href="/<%=id%>/EducationalComponent/Character_c/Introduction" onclick="sendToDatabase('Character_Selected','Character_c')">
-                    <img class="alex-snippet" src="https://hpv-project.s3.amazonaws.com/Assets/c_alex_image.png" />
+                <a onclick="ContinueOrResetSession('Character_c')">
+                    <img class="alex-snippet"
+                        src="https://hpv-project.s3.amazonaws.com/Assets/c_alex_image.png" />
                 </a>
-                
-                <a href="/<%=id%>/EducationalComponent/Character_d/Introduction" onclick="sendToDatabase('Character_Selected','Character_d')">
-                    <img class="alex-snippet" src="https://hpv-project.s3.amazonaws.com/Assets/d_dammie_image.png" />
+
+                <a onclick="ContinueOrResetSession('Character_d')">
+                    <img class="alex-snippet"
+                        src="https://hpv-project.s3.amazonaws.com/Assets/d_dammie_image.png" />
                 </a>
-                
+
             </div>
         </div>
 
-        
+
     </div>
+    <script src="/scripts/dataLogging.js"></script>
+    <script src="/scripts/deviceInfo.js"></script>
 
 </body>
+
 </html>

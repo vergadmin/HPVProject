@@ -1,12 +1,11 @@
 video {
-    width: 99%;
+    width: 100vw;
 }
 
 .title {
     font-size: 35px !important;
-    background-color: navy;
-    color: white;
-    text-align: center; 
+    color: navy;
+    text-align: center;
 }
 
 .video-controls {
@@ -19,6 +18,8 @@ button{
     margin: 5px !important;
     color: white !important;
     background-color: navy !important;
+    border-radius: 50px !important;
+    padding: 10px 25px !important;
 }
 
 .next{
@@ -27,6 +28,8 @@ button{
     right: 5px;
     bottom: 5px !important;
     display: none;
+    border-radius: 50px;
+    padding: 10px 25px;
 }
 
 .back{
@@ -34,26 +37,88 @@ button{
     position: fixed;
     left: 5px;
     bottom: 5px !important;
+    border-radius: 50px;
+    padding: 10px 25px;
 }
+
+.finish{
+    border-radius: 50px;
+    padding: 10px 25px;
+}
+
 .container{
     height: 100vh !important;
 }
 
-.user-selection-area{
+.checkbox-area{
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    text-align: right;
+}
+
+#selected-topics{
+    padding: 15px;
+    margin: 15px;
+    border: 0px;
+    border-radius: 5px;
+    background-color: #F15E22 !important;
+    color: white;
+}
+
+.checkboxdiv{
+    display: flex;
+    justify-content: flex-start;
+    margin: 5px;
+
+}
+
+.end-container{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    align-items: center;
 }
 
-#viewTranscriptButton{
-    display: none;
+.video-wrapper {
+    position: relative;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0); /* Adjust the opacity as needed */
 }
 
-.titleOrange {
-    font-size: 35px !important;
-    background-color: orangered;
+
+#playButton {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
     color: white;
-    text-align: center; 
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    padding: 15px 30px;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
+#playButton:focus {
+    outline: none;
+}
+
+#playButton:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.play-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75); /* Adjust the opacity as needed */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
