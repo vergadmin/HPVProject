@@ -1,0 +1,116 @@
+{ "Introduction" : 
+    { 
+ 		"title" : "Alex, Your Virtual Assistant",
+		"videoURL": "Introduction.mp4",
+		"questionOptions" : null,
+		"nextPageName": "VaccinatedOrNot",
+		"hideNextButton": false
+	},
+
+    "VaccinatedOrNot" : 
+    { 
+ 		"title" : "Have you received an HPV Vaccine?",
+		"videoURL": null,
+		"questionOptions" : {"Yes": "HowManyVaccines", "No": "Information1", "Not sure" : "Information1"},
+		"nextPageName": "HowManyVaccines",
+		"hideNextButton": true
+    },
+
+    "HowManyVaccines" : 
+    { 
+ 		"title" : "How many HPV Vaccines have you received?",
+		"videoURL": null,
+		"questionOptions" : {"1" : "VaccineWhen", "2" : "VaccineWhen", "3" : "VaccineWhen", "Not Sure" : "VaccineWhen"},
+		"nextPageName": null,
+		"hideNextButton": true
+    },
+
+    "VaccineWhen" : 
+    { 
+ 		"title" : "When did you receive HPV vaccine(s)?",
+		"videoURL": null,
+		"questionOptions" : {"Before i was treated for cancer" : "Information1", 
+                            "After I was treated for cancer" : "ThreeOrMoreVaccines", 
+                            "Started receiving vaccines before i was treated for cancer and received additional vaccines after i was treated" : "ThreeOrMoreVaccines", 
+                            "Not Sure" : "Information1"},
+		"nextPageName": null,
+		"hideNextButton": true
+    },
+
+    "ThreeOrMoreVaccines" : 
+    { 
+ 		"title" : "Have you received the complete HPV vaccine series (3 vaccines) AFTER completing cancer treatment?",
+		"videoURL": null,
+		"questionOptions" : {"Yes" : "Information1", 
+                            "No" : "Information1"},
+		"nextPageName": null,
+		"hideNextButton": true
+    },
+
+    "Information1" : 
+    { 
+ 		"title" : "HPV Vaccine Information",
+		"videoURL": "hpvInfo.mp4",
+		"questionOptions" : null,
+		"nextPageName": "InformationQuestion",
+		"hideNextButton": false
+    },
+
+    "InformationQuestion" : 
+    { 
+ 		"title" : "Did you know the HPV vaccine was a cancer prevention vaccine?",
+		"videoURL": null,
+		"questionOptions" : {"Yes" : "Recommendation", "No": "Recommendation"},
+		"nextPageName": "InformationQuestion2",
+		"hideNextButton": true
+    },
+
+    "Recommendation" : 
+    { 
+ 		"title" : "Recommendation",
+		"videoURL": "Recommendation.mp4",
+		"questionOptions" : null,
+		"nextPageName": "FuturePlans",
+		"hideNextButton": false
+    },
+
+    "FuturePlans" : 
+    { 
+ 		"title" : "Do you plan to get the HPV Vaccine series?",
+		"videoURL": null,
+		"questionOptions" : {"Yes" : "DiscussWithDoctor", "No": "NotConsidering", "Not Sure": "NotConsidering"},
+		"nextPageName": null,
+		"hideNextButton": true
+    },
+
+    "DiscussWithDoctor" : 
+    { 
+ 		"title" : "Discuss with your doctor during your next visit",
+		"videoURL": "discussWithDoctor.mp4",
+		"questionOptions" : null,
+		"nextPageName": null,
+		"hideNextButton": true
+    },
+
+    "NotConsidering" : 
+    { 
+ 		"title" : "What are your reasons for NOT considering it?",
+		"videoURL": null,
+		"questionOptions" : {"I don't think i need the HPV Vaccine" : "SuggestionsForVisit",
+                             "I perfer not to receive vaccines in general, including HPV": "SuggestionsForVisit",
+                             "I have concerns about whether I may have side effects from the HPV Vaccine": "SuggestionsForVisit",
+                            "Other Reasons": "SuggestionsForVisit"},
+		"nextPageName": "SuggestionsForVisit",
+		"hideNextButton": true
+    },
+
+    "SuggestionsForVisit" : 
+    { 
+ 		"title" : "Suggestions for your upcoming Oncology visit",
+		"videoURL": "suggestionsForOncologyVisit.mp4",
+		"questionOptions" : null,
+		"nextPageName": null,
+		"hideNextButton": true
+    }
+
+}

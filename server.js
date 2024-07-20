@@ -43,76 +43,10 @@ app.use(session({
     }
 }))
 
-// this function is called from the client to register info from the front end to the db
-app.post('/updateDatabase', async (req, res) => {
-    let setList = ''
-    console.log("IN UPDATE DATABASE")
-    console.log(userInfo)
-    console.log(req.body);
-    for (const [key, value] of Object.entries(req.body)) {
-        setList += key + `='` + value + `', `
-    }
-    setList = setList.slice(0, -2); 
-    console.log(setList);
-
-    // BEGIN DATABSAE STUFF:SENDING VERSION (R24 OR U01) AND ID TO DATABASE
-    sql.connect(config, function (err) {
-        if (err) console.log(err);
-        // create Request object
-        var request = new sql.Request();
-        let queryString = `UPDATE HPVDataTable SET ` + setList + ` WHERE Participant_ID = '` + userInfo.ID +  `'`;
-        request.query(queryString, function (err, recordset) {
-            if (err) console.log(err) 
-            console.log("updated db! with js index info")
-        }); 
-    });
-    // END DATABASE STUFF
-})
-
-app.get('/:id', registerVisit, (req, res) => {
+app.get('/:id', (req, res) => {
     id = req.params.id
     res.render('pages/index',{id: id})
 })
-
-function registerVisit(req, res, next) {
-    sql.connect(config, function (err) {
-        var request = new sql.Request();
-        console.log("IN REGISTER VISIT")
-        userInfo['ID'] = req.params.id
-        // Query Check for Existing Entry In Table
-        let checkString = `SELECT visitNum FROM HPVDataTable WHERE Participant_ID = '` + userInfo['ID'] + `';`;
-        console.log(checkString)
-        request.query(checkString, function(err, recordset) {
-            if (err) console.log(err);
-            // if user id exists in db, increment their visitNum
-            if (recordset.recordset.length !== 0) {
-                console.log("returning user");
-                sql.connect(config, function (err) {
-                    var request = new sql.Request();
-                    let queryString = `UPDATE HPVDataTable SET visitNum = visitNum+1 WHERE Participant_ID = '` + userInfo['ID'] + `';`;
-                    request.query(queryString, function (err, recordset) {
-                        if (err) console.log(err)
-                        console.log(recordset)
-                        next();
-                    })
-                })
-            }
-            // if user id is not in db, create new record
-            else {
-                console.log("first visit, adding to db")
-                sql.connect(config, function (err) {
-                    var request = new sql.Request();
-                    let queryString = `INSERT INTO HPVDataTable (Participant_ID) VALUES ('` + userInfo['ID'] + `')`;
-                    request.query(queryString, function (err, recordset) {
-                        if (err) console.log(err)
-                        next();
-                    })
-                })
-            }
-        })
-    })
-
-}
 
 // Virtual Human Types
 const EducationalComponentRouter = require('./routes/EducationalComponent');
