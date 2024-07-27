@@ -38,12 +38,18 @@
         <div class="user-selection-area" id="questions-container">
         </div>
 
-        <a onclick="backtoHomepage()">
-            <button class="back">Start from beginning</button>
+        <div id="transcript-container"></div>
+        
+        <a onclick="previousPage()">
+            <button class="back" id="back-button">Back</button>
         </a>
 
         <a onclick="nextPage()">
             <button class="next" id="next-button">Next</button>
+        </a>
+
+        <a onclick="endStudy()">
+            <button class="next" id="submit-button">Finish</button>
         </a>
 
     </div>
