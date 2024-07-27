@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,17 +14,18 @@
     <link rel="icon" href="data:,">
     <title>HPV</title>
 </head>
+
 <body>
     <header>
         <%- include('../partials/header'); %>
     </header>
     <div class="container">
-        <br/>
+        <br />
         <!-- <p class="title">Welcome to Your Meeting about the HPV Vaccine!</p> -->
-       
-        <p class="title">Who would you like to meet with? <br/>(select a virtual character)</p>
-        <br/>
-        <br/>
+
+        <p class="title">Who would you like to meet with? <br />(select a virtual character)</p>
+        <br />
+        <br />
         <div class="selection-area">
             <div class="choose-alex">
                 <a onclick="ContinueOrResetSession('Character_a')">
@@ -33,22 +35,24 @@
                 <a onclick="ContinueOrResetSession('Character_b')">
                     <img class="alex-snippet" src="https://hpv-project.s3.amazonaws.com/Assets/b_jack_image.png" />
                 </a>
-                
+
             </div>
             <div class="choose-alex">
                 <a onclick="ContinueOrResetSession('Character_c')">
                     <img class="alex-snippet" src="https://hpv-project.s3.amazonaws.com/Assets/c_alex_image.png" />
                 </a>
-                
+
                 <a onclick="ContinueOrResetSession('Character_d')">
                     <img class="alex-snippet" src="https://hpv-project.s3.amazonaws.com/Assets/d_dammie_image.png" />
                 </a>
-                
+
             </div>
         </div>
 
-        
+
     </div>
+    <script src="/scripts/deviceInfo.js"></script>
 
 </body>
+
 </html>

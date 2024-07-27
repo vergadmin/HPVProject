@@ -28,11 +28,16 @@ button{
     display: none;
 }
 
+.next:disabled {
+    background-color: #666;
+}
+
 .back{
     background-color: #F15E22 !important;
     position: fixed;
     left: 5px;
     bottom: 5px !important;
+    display: none;
 }
 .container{
     height: 100vh !important;
@@ -98,3 +103,17 @@ button{
     align-items: center;
 }
 
+#transcript-container{
+    padding: 15px;
+    margin: 15px;
+    border: 0px;
+    border-radius: 5px;
+    background-color: #F15E22 !important;
+    color: white;
+    display: none;
+}
+
+.checkboxdiv{
+    margin: 5px;
+
+}

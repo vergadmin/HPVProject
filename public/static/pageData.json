@@ -13,6 +13,7 @@
 		"videoURL": null,
 		"questionOptions" : {"Yes": "HowManyVaccines", "No": "Information1", "Not sure" : "Information1"},
 		"nextPageName": "HowManyVaccines",
+		"previousPageName": "Introduction",
 		"hideNextButton": true
     },
 
@@ -62,6 +63,7 @@
 		"videoURL": null,
 		"questionOptions" : {"Yes" : "Recommendation", "No": "Recommendation"},
 		"nextPageName": "InformationQuestion2",
+		"previousPageName": "Information1",
 		"hideNextButton": true
     },
 
@@ -80,6 +82,7 @@
 		"videoURL": null,
 		"questionOptions" : {"Yes" : "DiscussWithDoctor", "No": "NotConsidering", "Not Sure": "NotConsidering"},
 		"nextPageName": null,
+		"previousPageName": "Recommendation",
 		"hideNextButton": true
     },
 
@@ -88,7 +91,7 @@
  		"title" : "Discuss with your doctor during your next visit",
 		"videoURL": "discussWithDoctor.mp4",
 		"questionOptions" : null,
-		"nextPageName": null,
+		"nextPageName": "Transcript",
 		"hideNextButton": true
     },
 
@@ -108,6 +111,24 @@
     { 
  		"title" : "Suggestions for your upcoming Oncology visit",
 		"videoURL": "suggestionsForOncologyVisit.mp4",
+		"questionOptions" : null,
+		"nextPageName": "Transcript",
+		"hideNextButton": true
+    },
+
+	"Transcript" : 
+    { 
+ 		"title" : "Transcript of your Interaction",
+		"videoURL": null,
+		"questionOptions" : null,
+		"nextPageName": null,
+		"hideNextButton": true
+    },
+
+	"FinalPage" : 
+    { 
+ 		"title" : "Thank you for completing the study.",
+		"videoURL": null,
 		"questionOptions" : null,
 		"nextPageName": null,
 		"hideNextButton": true
