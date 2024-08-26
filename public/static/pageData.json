@@ -30,10 +30,10 @@
     { 
  		"title" : "When did you receive HPV vaccine(s)?",
 		"videoURL": null,
-		"questionOptions" : {"Before i was treated for cancer" : "Information1", 
+		"questionOptions" : {"Before I was treated for cancer" : "Information1", 
                             "After I was treated for cancer" : "ThreeOrMoreVaccines", 
-                            "Started receiving vaccines before i was treated for cancer and received additional vaccines after i was treated" : "ThreeOrMoreVaccines", 
-                            "Not Sure" : "Information1"},
+                            "Started receiving vaccines before I was treated for cancer and received additional vaccines after I was treated" : "ThreeOrMoreVaccines", 
+                            "Not sure" : "Information1"},
 		"nextPageName": null,
 		"hideNextButton": true
     },
@@ -99,10 +99,10 @@
     { 
  		"title" : "What are your reasons for NOT considering it?",
 		"videoURL": null,
-		"questionOptions" : {"I don't think i need the HPV Vaccine" : "SuggestionsForVisit",
+		"questionOptions" : {"I don't think I need the HPV Vaccine" : "SuggestionsForVisit",
                              "I perfer not to receive vaccines in general, including HPV": "SuggestionsForVisit",
                              "I have concerns about whether I may have side effects from the HPV Vaccine": "SuggestionsForVisit",
-                            "Other Reasons": "SuggestionsForVisit"},
+                            "Other reasons": "SuggestionsForVisit"},
 		"nextPageName": "SuggestionsForVisit",
 		"hideNextButton": true
     },
