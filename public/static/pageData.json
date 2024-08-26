@@ -21,7 +21,7 @@
     { 
  		"title" : "How many HPV Vaccines have you received?",
 		"videoURL": null,
-		"questionOptions" : {"1" : "VaccineWhen", "2" : "VaccineWhen", "3" : "VaccineWhen", "Not Sure" : "VaccineWhen"},
+		"questionOptions" : {"1" : "VaccineWhen", "2" : "VaccineWhen", "3" : "VaccineWhen", "Not sure" : "VaccineWhen"},
 		"nextPageName": null,
 		"hideNextButton": true
     },
