@@ -6,6 +6,7 @@ window.addEventListener("load", async () => {
     }
     setPageName();
     await LoadJSONFile();
+    SetButtonsInLanguage();
     LoadPageData();
 });
 
@@ -17,6 +18,16 @@ function setPageName(pageToBeSet){
         sessionStorage.PageName = pageToBeSet
     }
     PageName = sessionStorage.PageName;
+}
+
+function SetButtonsInLanguage(){
+    language = sessionStorage.getItem("language");
+    document.getElementById("back-button").innerText = PageData["back-button"]["languageTitle"][language];
+    document.getElementById("next-button").innerText = PageData["next-button"]["languageTitle"][language];
+    document.getElementById("submit-button").innerText = PageData["submit-button"]["languageTitle"][language];
+    document.getElementById("pause").innerText = PageData["play-button"]["languageTitle"][language]; //For on load only...value wil update to correct on videoControls.js activating.
+    document.getElementById("rewind").innerText = PageData["rewind-button"]["languageTitle"][language];
+    document.getElementById("playButton").innerText = PageData["play-button"]["languageTitle"][language];
 }
 
 async function LoadJSONFile(){
@@ -42,7 +53,7 @@ function LoadPageData(){
 
 function UpdateTitle(page){
     tempVar = document.getElementById("title");
-    tempVar.innerText = page.title;
+    tempVar.innerText = page.languageTitle[sessionStorage.getItem("language")];
 }
 
 function ShowNextButton(hideNextBuutton){
@@ -101,6 +112,7 @@ function ShowSubmitButton(PageName){
 }
 
 function ShowQuestions(questions){
+    language = sessionStorage.getItem("language");
     questionsContainer = document.getElementById("questions-container");
     if(questions === null){
         questionsContainer.innerHTML = "";
@@ -112,10 +124,10 @@ function ShowQuestions(questions){
         labels.forEach(label => {
             const button = document.createElement('button');
             button.className = 'user-selection-button';
-            button.textContent = label;
+            button.textContent = questions[label][language];
             button.onclick = async () => {
-                await logQuestionResponseToDB(PageData[PageName].title, label);
-                nextPage(questions[label]);
+                await logQuestionResponseToDB(PageData[PageName].title, label, PageData[PageName].languageTitle[language], questions[label][language]);
+                nextPage(questions[label]["PageName"]);
             };
             questionsContainer.appendChild(button);
         });
@@ -130,6 +142,7 @@ function previousPage(){
 }
 
 function nextPage(page){
+    console.log(page);
     if(page){
         setPageName(page);
     }
@@ -140,7 +153,7 @@ function nextPage(page){
     LoadPageData();
 }
 
-async function logQuestionResponseToDB(question, response){
+async function logQuestionResponseToDB(question, response, languageQuestion, languageResponse){
     if(sessionStorage.getItem("response_data")){
         questions_data = sessionStorage.getItem("response_data")
         questions_data = JSON.parse(questions_data)
@@ -149,7 +162,7 @@ async function logQuestionResponseToDB(question, response){
         questions_data = {}
     }
 
-    questions_data[question] = response
+    questions_data[languageQuestion] = languageResponse
     questions_data = JSON.stringify(questions_data) 
     sessionStorage.setItem("response_data", questions_data)
     console.log(question, response);
