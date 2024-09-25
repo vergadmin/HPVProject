@@ -1,6 +1,8 @@
 { "Introduction" : 
     { 
  		"title" : "Alex, Your Virtual Assistant",
+		"languageTitle" : { "EN": "Alex, Your Virtual Assistant",
+							"ES": "Alex, tu asistente virtual"},
 		"videoURL": "Introduction.mp4",
 		"questionOptions" : null,
 		"nextPageName": "VaccinatedOrNot",
@@ -10,8 +12,12 @@
     "VaccinatedOrNot" : 
     { 
  		"title" : "Have you received an HPV Vaccine?",
+		"languageTitle" : { "EN": "Have you received an HPV Vaccine?",
+		 					"ES": "¿Ha recibido una vacuna contra el VPH?"},
 		"videoURL": null,
-		"questionOptions" : {"Yes": "HowManyVaccines", "No": "Information1", "Not sure" : "Information1"},
+		"questionOptions" : {"Yes": {"PageName":"HowManyVaccines","ES":"Sí", "EN" : "Yes"}, 
+							 "No": {"PageName" : "Information1", "ES":"No", "EN" :"No"}, 
+							 "Not sure" : {"PageName" : "Information1", "ES": "No estoy seguro", "EN" :"Not sure"}},
 		"nextPageName": "HowManyVaccines",
 		"previousPageName": "Introduction",
 		"hideNextButton": true
@@ -20,8 +26,13 @@
     "HowManyVaccines" : 
     { 
  		"title" : "How many HPV Vaccines have you received?",
+		"languageTitle" : { "EN": "How many HPV Vaccines have you received?",
+		 					"ES": "¿Cuántas vacunas contra el VPH ha recibido?"},
 		"videoURL": null,
-		"questionOptions" : {"1" : "VaccineWhen", "2" : "VaccineWhen", "3" : "VaccineWhen", "Not sure" : "VaccineWhen"},
+		"questionOptions" : {"1" : {"PageName":"VaccineWhen","ES":"1","EN" :"1"}, 
+							 "2" : {"PageName":"VaccineWhen","ES":"2","EN" :"2"}, 
+							 "3" :{"PageName":"VaccineWhen","ES":"3", "EN" :"3"}, 
+							 "Not sure" : {"PageName":"VaccineWhen","ES":"No estoy seguro", "EN" :"Not sure"}},
 		"nextPageName": null,
 		"hideNextButton": true
     },
@@ -29,11 +40,14 @@
     "VaccineWhen" : 
     { 
  		"title" : "When did you receive HPV vaccine(s)?",
+		"languageTitle" : { "EN": "When did you receive HPV vaccine(s)?",
+		 					"ES": "¿Cuándo recibió la(s) vacuna(s) contra el VPH?"},
 		"videoURL": null,
-		"questionOptions" : {"Before I was treated for cancer" : "Information1", 
-                            "After I was treated for cancer" : "ThreeOrMoreVaccines", 
-                            "Started receiving vaccines before I was treated for cancer and received additional vaccines after I was treated" : "ThreeOrMoreVaccines", 
-                            "Not sure" : "Information1"},
+		"questionOptions" : {"Before I was treated for cancer" : {"PageName":"Information1", "ES":"Antes de que me trataran contra el cáncer", "EN": "Before I was treated for cancer"}, 
+                            "After I was treated for cancer" : {"PageName":"ThreeOrMoreVaccines", "ES":"Después de que me trataran contra el cáncer", "EN":"After I was treated for cancer"}, 
+                            "Started receiving vaccines before I was treated for cancer and received additional vaccines after I was treated" : {"PageName":"ThreeOrMoreVaccines", "ES":"Comencé a recibir vacunas antes de recibir tratamiento contra el cáncer y recibí vacunas adicionales después de recibir tratamiento", "EN":"Started receiving vaccines before I was treated for cancer and received additional vaccines after I was treated"}, 
+                            "Not sure" : {"PageName":"Information1", "ES":"No estoy seguro", "EN":"Not sure"}
+							},
 		"nextPageName": null,
 		"hideNextButton": true
     },
@@ -41,9 +55,12 @@
     "ThreeOrMoreVaccines" : 
     { 
  		"title" : "Have you received the complete HPV vaccine series (3 vaccines) AFTER completing cancer treatment?",
+		"languageTitle" : { "EN": "Have you received the complete HPV vaccine series (3 vaccines) AFTER completing cancer treatment?",
+		 					"ES": "¿Ha recibido la serie completa de vacunas contra el VPH (3 vacunas) DESPUÉS de completar el tratamiento contra el cáncer?"},
 		"videoURL": null,
-		"questionOptions" : {"Yes" : "Information1", 
-                            "No" : "Information1"},
+		"questionOptions" : {"Yes" : {"PageName":"Information1", "ES":"Sí", "EN":"Yes"}, 
+                            "No" : {"PageName":"Information1","ES":"No", "EN":"No"}
+							},
 		"nextPageName": null,
 		"hideNextButton": true
     },
@@ -51,6 +68,8 @@
     "Information1" : 
     { 
  		"title" : "HPV Vaccine Information",
+		"languageTitle" : { "EN": "HPV Vaccine Information",
+		 					"ES": "Información sobre la vacuna contra el VPH"},
 		"videoURL": "hpvInfo.mp4",
 		"questionOptions" : null,
 		"nextPageName": "InformationQuestion",
@@ -60,8 +79,11 @@
     "InformationQuestion" : 
     { 
  		"title" : "Did you know the HPV vaccine was a cancer prevention vaccine?",
+		"languageTitle" : { "EN": "Did you know the HPV vaccine was a cancer prevention vaccine?",
+		 					"ES": "¿Sabías que la vacuna contra el VPH era una vacuna para prevenir el cáncer?"},
 		"videoURL": null,
-		"questionOptions" : {"Yes" : "Recommendation", "No": "Recommendation"},
+		"questionOptions" : {"Yes" : {"PageName":"Recommendation", "ES":"Sí", "EN":"Yes"}, 
+							 "No": {"PageName":"Recommendation","ES":"No", "EN":"No"}},
 		"nextPageName": "InformationQuestion2",
 		"previousPageName": "Information1",
 		"hideNextButton": true
@@ -70,6 +92,8 @@
     "Recommendation" : 
     { 
  		"title" : "Recommendation",
+		"languageTitle" : { "EN": "Recommendation",
+							"ES": "Recomendación"},
 		"videoURL": "Recommendation.mp4",
 		"questionOptions" : null,
 		"nextPageName": "FuturePlans",
@@ -79,8 +103,13 @@
     "FuturePlans" : 
     { 
  		"title" : "Do you plan to get the HPV Vaccine series?",
+		"languageTitle" : { "EN": "Do you plan to get the HPV Vaccine series?",
+		 					"ES": "¿Planea recibir la serie de vacunas contra el VPH?"},
 		"videoURL": null,
-		"questionOptions" : {"Yes" : "DiscussWithDoctor", "No": "NotConsidering", "Not Sure": "NotConsidering"},
+		"questionOptions" : {"Yes" : {"PageName":"DiscussWithDoctor","ES":"Sí", "EN":"Yes"}, 
+							 "No": {"PageName":"NotConsidering","ES":"No","EN":"No"}, 
+							 "Not sure": {"PageName":"NotConsidering","ES":"No estoy seguro","EN":"Not sure"}
+							},
 		"nextPageName": null,
 		"previousPageName": "Recommendation",
 		"hideNextButton": true
@@ -89,6 +118,8 @@
     "DiscussWithDoctor" : 
     { 
  		"title" : "Discuss with your doctor during your next visit",
+		"languageTitle" : { "EN": "Discuss with your doctor during your next visit",
+		 					"ES": "Hable con su médico durante su próxima visita"},
 		"videoURL": "discussWithDoctor.mp4",
 		"questionOptions" : null,
 		"nextPageName": "Transcript",
@@ -98,11 +129,14 @@
     "NotConsidering" : 
     { 
  		"title" : "What are your reasons for NOT considering it?",
+		"languageTitle" : { "EN": "What are your reasons for NOT considering it?",
+							"ES": "Hable con su médico durante su próxima visita"},
 		"videoURL": null,
-		"questionOptions" : {"I don't think I need the HPV Vaccine" : "SuggestionsForVisit",
-                             "I perfer not to receive vaccines in general, including HPV": "SuggestionsForVisit",
-                             "I have concerns about whether I may have side effects from the HPV Vaccine": "SuggestionsForVisit",
-                            "Other reasons": "SuggestionsForVisit"},
+		"questionOptions" : {"I don't think I need the HPV Vaccine" : {"PageName":"SuggestionsForVisit","ES":"No creo que necesite la vacuna contra el VPH", "EN":"I don't think I need the HPV Vaccine"},
+                             "I perfer not to receive vaccines in general, including HPV": {"PageName":"SuggestionsForVisit","ES":"Prefiero no recibir vacunas en general, incluida la del VPH", "EN":"I perfer not to receive vaccines in general, including HPV"},
+                             "I have concerns about whether I may have side effects from the HPV Vaccine": {"PageName":"SuggestionsForVisit","ES":"Me preocupa si puedo tener efectos secundarios debido a la vacuna contra el VPH", "EN":"I have concerns about whether I may have side effects from the HPV Vaccine"},
+                             "Other reasons": {"PageName":"SuggestionsForVisit","ES":"Otras razones", "EN":"Other reasons"}
+							},
 		"nextPageName": "SuggestionsForVisit",
 		"hideNextButton": true
     },
@@ -110,6 +144,8 @@
     "SuggestionsForVisit" : 
     { 
  		"title" : "Suggestions for your upcoming Oncology visit",
+		"languageTitle" : { "EN": "Suggestions for your upcoming Oncology visit",
+		 					"ES": "Sugerencias para su próxima visita a Oncología"},
 		"videoURL": "suggestionsForOncologyVisit.mp4",
 		"questionOptions" : null,
 		"nextPageName": "Transcript",
@@ -119,6 +155,8 @@
 	"Transcript" : 
     { 
  		"title" : "Transcript of your Interaction",
+		"languageTitle" : { "EN": "Transcript of your Interaction",
+		 					"ES": "Transcripción de su interacción"},
 		"videoURL": null,
 		"questionOptions" : null,
 		"nextPageName": null,
@@ -128,10 +166,41 @@
 	"FinalPage" : 
     { 
  		"title" : "Thank you for participating.",
+		"languageTitle" : { "EN": "Thank you for participating.",
+		 					"ES": "Gracias por participar."},
 		"videoURL": null,
 		"questionOptions" : null,
 		"nextPageName": null,
 		"hideNextButton": true
-    }
-
+    },
+	"Index" : 
+	{
+		"title" : "Who would you like to meet with? (select a virtual character).",
+		"languageTitle" : { "EN": "Who would you like to meet with? (select a virtual character).",
+		"ES": "¿Con quién te gustaría reunirte? (selecciona un personaje virtual)"}
+	},
+	"back-button":{
+		"languageTitle" : { "EN": "Back",
+		"ES": "Atrás"}
+	},
+	"next-button":{
+		"languageTitle" : { "EN": "Next",
+		"ES": "Próximo"}
+	},	
+	"submit-button":{
+		"languageTitle" : { "EN": "Finish",
+		"ES": "Finalizar"}
+	},
+	"pause-button":{
+		"languageTitle" : { "EN": "Pause",
+		"ES": "Pausa"}
+	},
+	"rewind-button":{
+		"languageTitle" : { "EN": "Rewind",
+		"ES": "Rebobinar"}
+	},
+	"play-button":{
+		"languageTitle" : { "EN": "Play",
+		"ES": "Jugar"}
+	}
 }
