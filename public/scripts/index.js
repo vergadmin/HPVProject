@@ -13,9 +13,23 @@ window.addEventListener("load", async () => {
     if(userLanguage){
         sessionStorage.setItem('language',userLanguage);
     }
-    else{ sessionStorage.setItem('language',"EN");}
-    document.getElementById("IndexTitle").innerText = PageData["Index"]["languageTitle"][userLanguage]
+    else{ 
+        sessionStorage.setItem('language',"EN");
+    }
+
+    const language = sessionStorage.getItem('language');
+    document.getElementById("IndexTitle").innerText = PageData["Index"]["languageTitle"][language]
     // sessionStorage.setItem("type", type)
+    
+
+    // Dynamically update image URLs based on the selected language
+    const baseUrl = "https://hpv-project.s3.amazonaws.com";
+
+    document.getElementById("characterA").src = `${baseUrl}/${language}/character_a_image.png`;
+    document.getElementById("characterB").src = `${baseUrl}/${language}/character_b_image.png`;
+    document.getElementById("characterC").src = `${baseUrl}/${language}/character_c_image.png`;
+    document.getElementById("characterD").src = `${baseUrl}/${language}/character_d_image.png`;
+
 
     // console.log("TIME")
     dateTime = new Date().toLocaleString() + " " + Intl.DateTimeFormat().resolvedOptions().timeZone;
