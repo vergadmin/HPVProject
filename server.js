@@ -43,14 +43,19 @@ app.use(session({
     }
 }))
 
-app.get('/:id', (req, res) => {
+app.get('/', (req, res) => {
     id = req.params.id
     res.render('pages/index',{id: id})
 })
 
+// You can also add a route for the favicon manually, if needed:
+app.get('/favicon.ico', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'favicon.ico'));
+  });
+
 // Virtual Human Types
 const EducationalComponentRouter = require('./routes/EducationalComponent');
-app.use('/:id/EducationalComponent', function(req,res,next) {
+app.use('/EducationalComponent', function(req,res,next) {
     req.id = id;
     //req.type = type
     req.userInfo = userInfo
