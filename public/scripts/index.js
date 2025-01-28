@@ -4,10 +4,6 @@ window.addEventListener("load", async () => {
 
     await LoadJSONFile();
     console.log(PageData["Index"]);
-    // var type = document.URL.split('/').reverse()[0]
-    var id = document.URL.split('/').reverse()[1]
-    console.log(id)
-    sessionStorage.setItem("id", id)
     const urlParams = new URLSearchParams(window.location.search);
     const userLanguage = urlParams.get('language');
     if(userLanguage){
@@ -15,6 +11,14 @@ window.addEventListener("load", async () => {
     }
     else{ 
         sessionStorage.setItem('language',"EN");
+    }
+
+    const ParticipantID = urlParams.get("ParticipantID");
+    if(ParticipantID){
+        sessionStorage.setItem("id", ParticipantID)
+    }
+    else{
+        sessionStorage.setItem("id", "TestID");
     }
 
     const language = sessionStorage.getItem('language');
@@ -71,7 +75,7 @@ async function ContinueOrResetSession(character){
         sessionStorage.setItem('InterventionStartTime', new Date(HomepageVisitTimeStamp).toISOString().slice(0, 19).replace('T', ' '))
         response = await CreateEntryInDB();
     }
-    window.location.href=`/${id}/EducationalComponent/${character}/Introduction`
+    window.location.href=`/EducationalComponent/${character}/Introduction`
 }
 
 async function CreateEntryInDB(){
