@@ -64,7 +64,8 @@ async function ContinueOrResetSession(character){
     console.log(character !== sessionStorage.getItem("type"))
     language = sessionStorage.getItem("language");
     // var type = document.URL.split('/').reverse()[0]
-    var id = document.URL.split('/').reverse()[1]
+    const urlParams = new URLSearchParams(window.location.search);
+    var id = urlParams.get("ParticipantID");
     if(character !== sessionStorage.getItem("type")){    
 
         sessionStorage.clear()
