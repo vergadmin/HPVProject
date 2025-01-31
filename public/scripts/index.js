@@ -76,7 +76,7 @@ async function ContinueOrResetSession(character){
         sessionStorage.setItem('InterventionStartTime', new Date(HomepageVisitTimeStamp).toISOString().slice(0, 19).replace('T', ' '))
         response = await CreateEntryInDB();
     }
-    window.location.href=`/EducationalComponent/${character}/Introduction`
+    window.location.href=`/EducationalComponent/${character}/Introduction` + (urlParams.toString() ? '?' + urlParams.toString() : '');
 }
 
 async function CreateEntryInDB(){
