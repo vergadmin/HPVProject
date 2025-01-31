@@ -1,5 +1,12 @@
 video {
-    width: 100%;
+    width: 60vw;
+}
+
+/*mobile stuff */
+@media only screen and (max-width: 768px) {
+    video {
+        width: 100vw;
+    }
 }
 
 .title {
@@ -64,10 +71,17 @@ button{
 .video-wrapper {
     display: block;
     position: relative;
-    width: 100vw;
+    width: 60vw;
     background-color: rgba(0, 0, 0, 0); /* Adjust the opacity as needed */
+    margin: auto;
 }
 
+/*mobile stuff */
+@media only screen and (max-width: 768px) {
+    .video-wrapper  {
+        width: 100vw;
+    }
+}
 
 #playButton {
     position: absolute;
